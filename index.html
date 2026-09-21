@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dipannita Majhi | Full Stack Developer</title>
-<meta name="description" content="Portfolio of Dipannita Majhi, final-year B.Tech CSE student building full stack web apps with React, Node.js, MongoDB and Python.">
+<meta name="description" content="Portfolio of Dipannita Majhi, final-year B.Tech CSE student building full stack web apps with React, Node.js, Express.js , MongoDB and Python.">
 <meta property="og:title" content="Dipannita Majhi | Full Stack Developer">
 <meta property="og:description" content="Final-year B.Tech CSE student. Full stack web apps, AI projects and campus network design.">
 <meta property="og:image" content="photo.jpg">
@@ -21,26 +21,28 @@
   --line:#D9DDEA;
   --gold:#E3A008;     /* marigold */
   --panel:#FFFFFF;
+  --contact-bg:#1E2A5E;
   --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --paper:#0F1430; --ink:#C9D2FF; --text:#E3E6F2; --muted:#9AA1BD; --line:#2A3160; --panel:#161C42;
+    --contact-bg:#1B2260;
   }
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--paper);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.65}
 a{color:var(--ink)}
-a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:4px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
 
 /* header */
 header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
 .brand{font-family:var(--display);font-weight:800;font-size:19px;color:var(--ink);text-decoration:none}
-nav a{margin-left:22px;font-size:15px;font-weight:500;text-decoration:none;color:var(--muted)}
+nav a{margin-left:18px;font-size:15px;font-weight:500;text-decoration:none;color:var(--muted)}
 nav a:hover{color:var(--ink)}
 
 /* hero */
@@ -54,7 +56,7 @@ nav a:hover{color:var(--ink)}
 .hero .role{font-family:var(--display);font-size:clamp(20px,2.6vw,27px);font-weight:500;margin:0 0 16px}
 .hero p.lede{max-width:52ch;color:var(--muted);margin:0 0 30px}
 .btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:2px solid var(--ink)}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:2px solid var(--ink);font-family:inherit;cursor:pointer}
 .btn.primary{background:var(--ink);color:var(--paper)}
 .btn.ghost{color:var(--ink)}
 .btn:hover{transform:translateY(-2px)}
@@ -65,10 +67,12 @@ nav a:hover{color:var(--ink)}
 section{padding:72px 0;border-top:1px solid var(--line)}
 h2{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.5vw,44px);letter-spacing:-.01em;margin:0 0 34px;color:var(--ink)}
 h3{font-family:var(--display);font-size:21px;margin:0;color:var(--ink)}
-.about{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start}
 .about p{margin:0 0 16px;max-width:60ch}
-.facts{list-style:none;margin:0;padding:0}
+.about p:last-child{margin-bottom:0}
+.facts{list-style:none;margin:0;padding:6px 22px;background:var(--panel);border:2px solid var(--ink);border-radius:14px;box-shadow:6px 6px 0 var(--gold)}
 .facts li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line)}
+.facts li:last-child{border-bottom:none}
 .facts span:first-child{color:var(--muted)}
 .facts span:last-child{font-weight:600;text-align:right}
 
@@ -93,6 +97,10 @@ h3{font-family:var(--display);font-size:21px;margin:0;color:var(--ink)}
 .project .links a{font-weight:600;margin-right:18px;font-size:15px}
 .tag{display:inline-block;font-size:13px;font-weight:600;background:var(--gold);color:#1a1a1a;border-radius:999px;padding:2px 10px;margin-left:8px;vertical-align:middle}
 
+/* project screenshots (a card hides itself if its image file is missing) */
+.shot{margin:0 0 16px;max-width:560px;aspect-ratio:16/10;border:2px solid var(--ink);border-radius:12px;overflow:hidden;background:var(--panel);box-shadow:6px 6px 0 var(--gold)}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+
 /* education */
 .edu{display:grid;gap:22px}
 .edu-row{display:grid;grid-template-columns:150px 1fr;gap:8px 32px;padding-bottom:22px;border-bottom:1px solid var(--line)}
@@ -100,25 +108,43 @@ h3{font-family:var(--display);font-size:21px;margin:0;color:var(--ink)}
 .edu-row p{margin:2px 0 0;color:var(--muted)}
 .edu-row strong{color:var(--ink)}
 
-/* lists */
+/* certifications */
 .plain{margin:0;padding-left:20px;max-width:72ch}
-.plain li{margin-bottom:10px}
+.plain li{margin-bottom:14px}
+.cert-link{display:inline-block;margin-top:2px;font-weight:600;font-size:15px}
 
 /* beyond code */
 .beyond{display:grid;grid-template-columns:1fr 1fr;gap:48px}
 .beyond p{margin:0 0 14px;max-width:56ch}
 
 /* contact */
-.contact{background:var(--ink);color:#F3F4FB;border-top:none}
+.contact{background:var(--contact-bg);color:#F3F4FB;border-top:none}
 .contact h2{color:#fff}
 .contact a{color:#fff}
-.contact .big{font-family:var(--display);font-weight:700;font-size:clamp(22px,4vw,36px);word-break:break-word;display:inline-block;margin-bottom:22px;text-decoration-color:var(--gold);text-underline-offset:6px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact .big{font-family:var(--display);font-weight:700;font-size:clamp(20px,3vw,30px);word-break:break-word;display:inline-block;margin-bottom:22px;text-decoration-color:var(--gold);text-underline-offset:6px}
 .contact ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:12px 28px}
 .contact ul a{font-weight:600}
+.contact .intro{margin:0 0 20px;max-width:44ch;color:#D5D9F0}
+
+/* contact form */
+.form{display:grid;gap:16px}
+.field label{display:block;font-weight:600;font-size:15px;margin-bottom:6px}
+.field input,.field textarea{width:100%;font:inherit;color:#fff;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.35);border-radius:10px;padding:12px 14px}
+.field textarea{min-height:140px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:#B4BADB}
+.field input:focus-visible,.field textarea:focus-visible{border-color:var(--gold);outline-offset:2px}
+.form .btn{background:var(--gold);color:#1a1a1a;border-color:var(--gold);justify-self:start}
+.form .btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.form-status{min-height:1.6em;margin:0;font-weight:600}
+.form-status.ok{color:#9BE7B0}
+.form-status.err{color:#FFC2A8}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
 footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
 
 @media (max-width:820px){
-  .hero .wrap,.about,.beyond{grid-template-columns:1fr}
+  .hero .wrap,.about,.beyond,.contact-grid{grid-template-columns:1fr}
   .portrait{order:-1;width:min(230px,60%)}
   .hero{padding:40px 0 64px}
   .project,.edu-row{grid-template-columns:1fr}
@@ -139,9 +165,12 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <a class="brand" href="#top">Dipannita Majhi</a>
     <nav aria-label="Main">
       <a href="#about">About</a>
+      <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#education">Education</a>
+      <a href="#achievements">Certifications</a>
+      <a href="#beyond">Beyond code</a>
       <a class="keep" href="#contact">Contact</a>
     </nav>
   </div>
@@ -157,7 +186,7 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <div>
       <p class="role">Full stack developer, final-year B.Tech CSE</p>
       <h1>Dipannita Majhi</h1>
-      <p class="lede">I build web apps with React, Node.js and MongoDB, and I like adding AI where it helps. I&rsquo;m looking for an entry-level role where I can ship real features and learn from a team.</p>
+      <p class="lede">I build web apps with React, Node.js, Express.js and MongoDB, and I like adding AI where it helps. I&rsquo;m looking for an entry-level role where I can ship real features and learn from a team.</p>
       <div class="btns">
         <a class="btn primary" href="#projects">See my projects</a>
         <a class="btn ghost" href="resume.pdf" download>Download resume</a>
@@ -169,11 +198,12 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
 </div>
 
 <section id="about">
-  <div class="wrap about">
+  <div class="wrap">
+    <h2>About me</h2>
+    <div class="about">
     <div>
-      <h2>About me</h2>
       <p>I&rsquo;m a final-year Computer Science and Engineering student at Supreme Knowledge Foundation Group of Institutions (MAKAUT), with a CGPA of 8.26 up to the 6th semester. My last two semesters scored 8.75 and 9.32.</p>
-      <p>I started with C, Java and Python, then moved into full stack web development. Through two remote internships I built REST APIs, authentication, and complete apps with CRUD features. I also enjoy projects that mix web with AI, like computer vision and prompt engineering.</p>
+      <p>I started with C, Java, DSA and Python, then moved into full stack web development. Through two remote internships I built REST APIs, authentication, and complete apps with CRUD features. I also enjoy projects that mix web with AI, like computer vision and prompt engineering.</p>
       <p>I learn fast, I like solving problems step by step, and I work well in teams.</p>
     </div>
     <ul class="facts" aria-label="Quick facts">
@@ -183,6 +213,7 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
       <li><span>Location</span><span>Hooghly, West Bengal</span></li>
       <li><span>Looking for</span><span>Entry-level developer role</span></li>
     </ul>
+    </div>
   </div>
 </section>
 
@@ -207,19 +238,36 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <h2>Experience</h2>
     <div class="roles">
       <article>
+        <div class="role-head"><h3>Tech4All AI &amp; Soft Skills Training</h3><span class="when">Aug 2026 &middot; SKFGI</span></div>
+        <p class="org">Cognizant Foundation India and ICT Academy &middot; 120 hours &middot; A+ grade</p>
+        <p>Completed a 120-hour program: 100 hours of AI training and 20 hours of soft skills. The AI track covered generative AI, Microsoft Azure AI, AI apps and agents, MCP tools, multi-agent solutions, speech and voice agents, computer vision, image generation and multimodal information extraction. I applied it in a hands-on AI project. The soft skills track covered teamwork, leadership, communication, presentations and group discussions.</p>
+        <p style="margin-top:8px"><a class="cert-link" href="certificates/tech4all.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></p>
+      </article>
+      <article>
         <div class="role-head"><h3>Full Stack Development Intern</h3><span class="when">2026 &middot; Remote</span></div>
         <p class="org">Cognifyz Technologies</p>
         <p>Built responsive web apps with HTML, CSS, JavaScript, Bootstrap, Node.js, Express.js and EJS. Designed RESTful CRUD APIs backed by MongoDB, with input validation and authentication.</p>
+        <p style="margin-top:8px"><a class="cert-link" href="certificates/cognifyz-internship.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></p>
       </article>
       <article>
         <div class="role-head"><h3>Web Development Intern</h3><span class="when">2026 &middot; Remote</span></div>
         <p class="org">CodeAlpha</p>
         <p>Delivered four projects: an Age Calculator, a To-Do List, a Music Player and a Social Network Platform. They cover CRUD operations, localStorage persistence and user authentication.</p>
+        <p style="margin-top:8px"><a class="cert-link" href="certificates/codealpha-internship.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></p>
       </article>
     </div>
   </div>
 </section>
 
+<!--
+  PROJECT SCREENSHOTS
+  Save one image per project in an "images" folder using the file names below
+  (16:10 works best, e.g. 1280x800). If a file is missing, that screenshot
+  simply doesn't show, so you can add them one at a time.
+
+  GITHUB LINKS
+  Replace every REPLACE-WITH-REPO-NAME with the real repository name.
+-->
 <section id="projects">
   <div class="wrap">
     <h2>Projects</h2>
@@ -227,22 +275,27 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <article class="project">
       <div class="tech">Python, FastAPI, React.js, YOLO, OpenCV, Roboflow, Google Colab</div>
       <div>
+        <figure class="shot"><img src="images/palmistry-tarot.png" alt="Screenshot of the Palmistry and Tarot platform showing detected palm lines" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>Palmistry &amp; Tarot Intelligence Platform</h3>
         <p>An AI platform that detects palm lines from photos and interprets Tarot cards. Computer vision models were trained and tested in Google Colab, and served through a FastAPI backend to a React interface.</p>
+        <div class="links"><a href="https://github.com/dipannitamajhi/REPLACE-WITH-REPO-NAME" target="_blank" rel="noopener">View code on GitHub</a></div>
       </div>
     </article>
 
     <article class="project">
       <div class="tech">Microsoft Foundry, GPT Image 1.5, GPT-4.1-mini, Python, FastAPI, JavaScript</div>
       <div>
+        <figure class="shot"><img src="images/azure-image-generator.png" alt="Screenshot of the Azure AI Image Generator with a generated image and prompt history" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>Azure AI Image Generator &amp; Prompt Enhancer</h3>
         <p>Turns a short idea into a detailed prompt, then generates the image. Uses the Azure OpenAI SDK, with image preview, download and a history of past generations.</p>
+        <div class="links"><a href="https://github.com/dipannitamajhi/REPLACE-WITH-REPO-NAME" target="_blank" rel="noopener">View code on GitHub</a></div>
       </div>
     </article>
 
     <article class="project">
       <div class="tech">Node.js, Express.js, MongoDB, HTML5, CSS3</div>
       <div>
+        <figure class="shot"><img src="images/social-network.png" alt="Screenshot of the Social Network Platform feed with posts, likes and comments" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>Social Network Platform</h3>
         <p>A full social app with authentication, user profiles, posts, comments, likes, and follow/unfollow.</p>
       </div>
@@ -251,6 +304,7 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <article class="project">
       <div class="tech">JavaScript, HTML5, CSS3, localStorage</div>
       <div>
+        <figure class="shot"><img src="images/todo-list.png" alt="Screenshot of the To-Do List app with a list of tasks" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>To-Do List App</h3>
         <p>A task manager with create, edit, complete and delete actions. Tasks are saved in the browser with localStorage so they stay after a refresh.</p>
         <div class="links"><a href="https://github.com/dipannitamajhi/To-Do-List-App" target="_blank" rel="noopener">View code on GitHub</a></div>
@@ -260,6 +314,7 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <article class="project">
       <div class="tech">HTML5 Audio API, JavaScript, CSS3</div>
       <div>
+        <figure class="shot"><img src="images/music-player.png" alt="Screenshot of the Music Player with playback controls" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>Music Player</h3>
         <p>A browser music player built with the HTML5 Audio API.</p>
       </div>
@@ -268,6 +323,7 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <article class="project">
       <div class="tech">JavaScript, HTML5, CSS3</div>
       <div>
+        <figure class="shot"><img src="images/age-calculator.png" alt="Screenshot of the Age Calculator showing a calculated age" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>Age Calculator</h3>
         <p>An age calculator built with JavaScript, with date validation on the input.</p>
         <div class="links"><a href="https://github.com/dipannitamajhi/CodeAlpha_TASK-1" target="_blank" rel="noopener">View code on GitHub</a></div>
@@ -277,8 +333,10 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
     <article class="project">
       <div class="tech">Cisco Packet Tracer</div>
       <div>
+        <figure class="shot"><img src="images/college-network.png" alt="Packet Tracer topology of the multi-department college network" width="1280" height="800" loading="lazy" onerror="this.closest('figure').remove()"></figure>
         <h3>Multi-Department College Computer Network</h3>
         <p>A simulated campus network split into VLANs per department, with inter-VLAN routing, DHCP, DNS, Web and FTP servers, and secured wireless access.</p>
+        <div class="links"><a href="docs/college-network.pdf" target="_blank" rel="noopener">View project report (PDF)</a></div>
       </div>
     </article>
 
@@ -312,13 +370,19 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
   </div>
 </section>
 
+<!--
+  CERTIFICATES
+  Save each certificate as a PDF (or image) in a "certificates" folder and keep
+  the file names below, or change the hrefs to match your files.
+-->
 <section id="achievements">
   <div class="wrap">
     <h2>Certifications &amp; achievements</h2>
     <ul class="plain">
-      <li><strong>Tech4All AI &amp; Soft Skills Training</strong> by Cognizant Foundation and ICT Academy. 120 hours, A+ grade.</li>
-      <li><strong>Smart India Hackathon (SIH)</strong>: participated and certified at IgniteX 2.0, the flagship tech fest of IMI Kolkata.</li>
-      <li><strong>IdeaStrike</strong>: presented an idea at the departmental idea presentation event, Dept. of CSE &amp; Technology, SKFGI (certified).</li>
+      <li><strong>Smart India Hackathon (SIH)</strong>: participated and certified at IgniteX 2.0, the flagship tech fest of IMI Kolkata.<br>
+        <a class="cert-link" href="certificates/sih-ignitex.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></li>
+      <li><strong>IdeaStrike</strong>: presented an idea at the departmental idea presentation event, Dept. of CSE &amp; Technology, SKFGI (certified).<br>
+        <a class="cert-link" href="certificates/ideastrike.pdf" target="_blank" rel="noopener">View certificate (PDF)</a></li>
     </ul>
   </div>
 </section>
@@ -339,16 +403,85 @@ footer{padding:22px 0;text-align:center;font-size:14px;color:var(--muted)}
 <section id="contact" class="contact">
   <div class="wrap">
     <h2>Let&rsquo;s work together</h2>
-    <a class="big" href="mailto:dipannitalic04@gmail.com">dipannitalic04@gmail.com</a>
-    <ul>
-      <li><a href="https://www.linkedin.com/in/dipannita-majhi-3514b0300" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="https://github.com/dipannitamajhi" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="resume.pdf" download>Download resume</a></li>
-    </ul>
+    <div class="contact-grid">
+      <div>
+        <p class="intro">Hiring for an entry-level developer role, or have a project in mind? Send a message, or email me directly.</p>
+        <a class="big" href="mailto:dipannitalic04@gmail.com">dipannitalic04@gmail.com</a>
+        <ul>
+          <li><a href="https://www.linkedin.com/in/dipannita-majhi-3514b0300" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/dipannitamajhi" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="resume.pdf" download>Download resume</a></li>
+        </ul>
+      </div>
+
+      <!-- Sends the message to your inbox through FormSubmit (free, no backend).
+           The first time anyone submits it, FormSubmit emails you a one-time
+           activation link. Click it once and the form is live. -->
+      <form class="form" id="contact-form" action="https://formsubmit.co/dipannitalic04@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from your portfolio">
+        <input type="hidden" name="_template" value="table">
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Your email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" name="message" required></textarea>
+        </div>
+        <button class="btn" type="submit" id="f-send">Send message</button>
+        <p class="form-status" id="f-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 </main>
 
 <footer>&copy; 2026 Dipannita Majhi</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('f-status');
+  var send = document.getElementById('f-send');
+  if (!form || !window.fetch) return; // without JS the form still posts normally
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.className = 'form-status';
+    status.textContent = '';
+    send.disabled = true;
+    send.textContent = 'Sending...';
+
+    fetch('https://formsubmit.co/ajax/dipannitalic04@gmail.com', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    })
+    .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+    .then(function (res) {
+      if (res.ok && String(res.data.success) === 'true') {
+        form.reset();
+        status.className = 'form-status ok';
+        status.textContent = 'Message sent. Thank you, I will reply soon.';
+      } else {
+        throw new Error('failed');
+      }
+    })
+    .catch(function () {
+      status.className = 'form-status err';
+      status.textContent = 'Could not send. Please email dipannitalic04@gmail.com directly.';
+    })
+    .then(function () {
+      send.disabled = false;
+      send.textContent = 'Send message';
+    });
+  });
+})();
+</script>
 </body>
 </html>
